@@ -37,9 +37,27 @@ SELECT
 	'' AS [   ],
 
 	
--- DateType:	bigint (C# log/.NET System.Int64)
+-- DateType:	bigint (C# long/.NET System.Int64)
 -- Description: Allows whole numbers between -9,223,372,036,854,775,808 and 9,223,372,036,854,775,807
 -- Storage:		8 bytes	
 	CAST(-9223372036854775808 As bigint) AS [bigint (min)],
 	CAST(9223372036854775807 As bigint) AS [bigint (max)],
+	'' AS [   ],
+
+	
+-- DateType:	decimal / numeric (C# decimal/.NET System.Decimal) 
+-- Description: Fixed precision and scale numbers.
+--				Allows numbers from -10^38 +1 to 10^38 –1
+--
+--				The p parameter indicates the maximum total number of digits that can be stored 
+--				(both to the left and to the right of the decimal point). 
+--				p must be a value from 1 to 38. Default is 18.
+--
+--				The s parameter indicates the maximum number of digits stored to the right of the decimal point. 
+--				s must be a value from 0 to p. Default value is 0
+-- Storage:		5 - 17 bytes	
+	CAST(-10E37 As decimal(38,0)) AS [~decimal (min)],
+	CAST( 10E37 As decimal(38,0)) AS [~decimal (max)],
+	CAST(-10E37 As numeric(38,0)) AS [~numeric (min)],
+	CAST( 10E37 As numeric(38,0)) AS [numeric (max)],
 	'' AS [   ];
